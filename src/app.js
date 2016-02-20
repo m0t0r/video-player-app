@@ -8,6 +8,7 @@ import ngMaterial from 'angular-material';
 import uiRouter from 'angular-ui-router';
 
 import AppComponent from './app.component';
+import VpToolbarComponent from './components/vp-toolbar/vp-toolbar.component.js';
 
   angular
     .module('videoPlayerApp', [
@@ -17,4 +18,5 @@ import AppComponent from './app.component';
       ngMaterial,
       uiRouter
     ])
-    .component('app', AppComponent);
+    .component('app', AppComponent)
+    .component('vpToolbar', VpToolbarComponent);
