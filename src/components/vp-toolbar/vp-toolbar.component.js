@@ -5,8 +5,9 @@ import './vp-toolbar.css';
 
  class VpToolbarCtrl {
 
-   constructor($mdDialog) {
-     this.$mdDialog =$mdDialog;
+   constructor($mdDialog, VideosService) {
+     this.$mdDialog = $mdDialog;
+     this.VideosService = VideosService;
    }
 
    addVideo($event) {
@@ -17,7 +18,7 @@ import './vp-toolbar.css';
        controller: ['$mdDialog', function addVideoModalCtrl($mdDialog) {
          var ctrl = this;
 
-         ctrl.cancel  = () => {
+         ctrl.cancel = () => {
            $mdDialog.cancel();
          };
 
@@ -28,12 +29,13 @@ import './vp-toolbar.css';
        controllerAs: 'ctrl',
        clickOutsideToClose: true
      }).then((video) => {
-        console.log('video', video);
+       video.created_at = new Date();
+       this.VideosService.addVideo(video);
      });
    }
  }
 
-VpToolbarCtrl.$inject = ['$mdDialog'];
+VpToolbarCtrl.$inject = ['$mdDialog', 'VideosService'];
 
 let VpToolBarComponent = {
   template,
