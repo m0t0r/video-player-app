@@ -14,6 +14,8 @@ import videogularOverlayPlay from 'videogular-overlay-play';
 import videogularPoster from 'videogular-poster';
 
 import core from './core';
+import common from './common';
+import videos from './videos';
 
 import AppComponent from './app.component';
 import VpToolbarComponent from './components/vp-toolbar/vp-toolbar.component';
@@ -33,7 +35,9 @@ import VpContentComponent from './components/vp-content/vp-content.component';
       videogularBuffering,
       videogularOverlayPlay,
       videogularPoster,
-      core
+      core,
+      common,
+      videos
     ])
     .component('app', AppComponent)
     .component('vpToolbar', VpToolbarComponent)
