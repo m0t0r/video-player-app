@@ -1,17 +1,16 @@
-<md-toolbar>
+<md-toolbar class="md-tall vp-toolbar">
   <div class="md-toolbar-tools">
     <md-button class="md-icon-button" aria-label="Settings">
-      <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+      <ng-md-icon icon="menu"></ng-md-icon>
     </md-button>
-    <h2>
-      <span>Toolbar with Icon Buttons</span>
-    </h2>
-    <span flex></span>
-    <md-button class="md-icon-button" aria-label="Favorite">
-      <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+    <md-button class="md-fab md-fab-top-left vp-add-video-fab" ng-click="$ctrl.addVideo()">
+      <ng-md-icon icon="add"></ng-md-icon>
+      <md-tooltip md-direction="top" >Add video</md-tooltip>
     </md-button>
-    <md-button class="md-icon-button" aria-label="More">
-      <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-    </md-button>
+  </div>
+  <div class="md-toolbar-tools md-toolbar-tools-bottom">
+    <div class="vp-toolbar-breadcrumbs">
+      <span>My Videos</span>
+    </div>
   </div>
 </md-toolbar>

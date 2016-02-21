@@ -1,0 +1,37 @@
+<md-dialog>
+  <form name="addVideoForm" ng-submit="ctrl.save()">
+    <md-dialog-content>
+      <div layout="column" layout-padding>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" ng-model="ctrl.video.name" required>
+            <div ng-messages="addVideoForm.name.$error">
+              <div ng-message="required">This field is required</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label for="url">Url</label>
+            <input type="text" name="url" id="url" ng-model="ctrl.video.url" required>
+            <div ng-messages="addVideoForm.url.$error">
+              <div ng-message="required">This field is required</div>
+            </div>
+          </md-input-container>
+        </div>
+        <md-input-container class="md-block" flex>
+          <label for="description">Description</label>
+          <textarea name="description" id="description" ng-model="ctrl.video.description" rows="5"></textarea>
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-click="ctrl.cancel()">
+        Cancel
+      </md-button>
+      <md-button type="submit" class="md-primary md-raised" ng-disabled="addVideoForm.$invalid">
+        Add
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
