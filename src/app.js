@@ -8,7 +8,8 @@ import ngMaterial from 'angular-material';
 import uiRouter from 'angular-ui-router';
 
 import AppComponent from './app.component';
-import VpToolbarComponent from './components/vp-toolbar/vp-toolbar.component.js';
+import VpToolbarComponent from './components/vp-toolbar/vp-toolbar.component';
+import VpSidenavComponent from './components/vp-sidenav/vp-sidenav.component';
 
   angular
     .module('videoPlayerApp', [
@@ -19,4 +20,5 @@ import VpToolbarComponent from './components/vp-toolbar/vp-toolbar.component.js'
       uiRouter
     ])
     .component('app', AppComponent)
-    .component('vpToolbar', VpToolbarComponent);
+    .component('vpToolbar', VpToolbarComponent)
+    .component('vpSidenav', VpSidenavComponent);
