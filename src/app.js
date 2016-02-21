@@ -5,7 +5,14 @@ import ngAnimate from 'angular-animate';
 import ngAria from 'angular-aria';
 import ngMessages from 'angular-messages';
 import ngMaterial from 'angular-material';
+import ngSanitize from 'angular-sanitize';
 import uiRouter from 'angular-ui-router';
+import ngMdIcons from 'angular-material-icons';
+import videogular from 'videogular';
+import videogularControls from 'videogular-controls';
+import videogularBuffering from 'videogular-buffering';
+import videogularOverlayPlay from 'videogular-overlay-play';
+import videogularPoster from 'videogular-poster';
 
 import AppComponent from './app.component';
 import VpToolbarComponent from './components/vp-toolbar/vp-toolbar.component';
@@ -18,7 +25,14 @@ import VpContentComponent from './components/vp-content/vp-content.component';
       ngAria,
       ngMessages,
       ngMaterial,
-      uiRouter
+      ngSanitize,
+      uiRouter,
+      ngMdIcons,
+      videogular,
+      videogularControls,
+      videogularBuffering,
+      videogularOverlayPlay,
+      videogularPoster
     ])
     .component('app', AppComponent)
     .component('vpToolbar', VpToolbarComponent)
