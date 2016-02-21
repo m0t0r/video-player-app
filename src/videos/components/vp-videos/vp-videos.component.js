@@ -8,12 +8,10 @@ class VpVideosCtrl {
   constructor(VideosService) {
     this.VideosService = VideosService;
     this.videos = [];
-    this.selectedVideo = null;
   }
 
   $onInit() {
     this.videos = this.VideosService.getVideos();
-    console.log(this.videos);
   };
 
   viewDetails(video){
@@ -25,7 +23,10 @@ VpVideosCtrl.$inject = ['VideosService'];
 
 let VpVideosComponent = {
   template,
-  controller: VpVideosCtrl
+  controller: VpVideosCtrl,
+  bindings: {
+    selectedVideo: '='
+  }
 };
 
 export default VpVideosComponent;
