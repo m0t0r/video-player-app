@@ -16,6 +16,7 @@ import videogularPoster from 'videogular-poster';
 import core from './core';
 import common from './common';
 import videos from './videos';
+import clips from './clips';
 
 import AppComponent from './app.component';
 import VpToolbarComponent from './components/vp-toolbar/vp-toolbar.component';
@@ -37,7 +38,8 @@ import VpContentComponent from './components/vp-content/vp-content.component';
       videogularPoster,
       core,
       common,
-      videos
+      videos,
+      clips
     ])
     .component('app', AppComponent)
     .component('vpToolbar', VpToolbarComponent)

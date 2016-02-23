@@ -10,7 +10,14 @@ class VideosService {
         url: 'http://static.videogular.com/assets/videos/videogular.mp4',
         description: 'A sample video for quick test',
         created_at: new Date(),
-        private: true
+        private: true,
+        clips: [
+          {
+            name: 'Test Clip 1',
+            url: 'http://static.videogular.com/assets/videos/videogular.mp4#t5-15',
+            created_at: new Date()
+          }
+        ]
       }
     ];
     this._selectedVideoItem = this._videos[0];

@@ -1,0 +1,11 @@
+.vp-clips-list .vp-clips-list__icon {
+  margin-bottom: 32px !important;
+}
+
+.vp-clips-list .vp-clips-list__icon-video {
+  color: #C51162;
+}
+
+.vp-clips-list .vp-clips-list__icon-clip {
+  color: #3F51B5;
+}

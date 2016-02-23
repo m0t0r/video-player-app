@@ -26,7 +26,7 @@ const coreModule = angular
             template: '<vp-video-play></vp-video-play>'
           },
           'side': {
-            template: '<h3>Clips list</h3>'
+            template: '<vp-clips-list></vp-clips-list>'
           }
         }
       });
