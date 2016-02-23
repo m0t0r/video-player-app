@@ -30,49 +30,49 @@
 
 
 
-  <!--&lt;!&ndash;<md-card>&ndash;&gt;-->
-    <!--&lt;!&ndash;<md-card-title>&ndash;&gt;-->
-      <!--&lt;!&ndash;<md-card-title-text>&ndash;&gt;-->
-        <!--&lt;!&ndash;<span class="md-headline">Card with image</span>&ndash;&gt;-->
-      <!--&lt;!&ndash;</md-card-title-text>&ndash;&gt;-->
-    <!--&lt;!&ndash;</md-card-title>&ndash;&gt;-->
-    <!--&lt;!&ndash;<md-card-content>&ndash;&gt;-->
-      <!--&lt;!&ndash;<videogular vg-theme="$ctrl.config.theme" vg-player-ready="$ctrl.onPlayerReady($API)">&ndash;&gt;-->
-        <!--&lt;!&ndash;<vg-media vg-src="$ctrl.config.sources"&ndash;&gt;-->
-                  <!--&lt;!&ndash;vg-tracks="$ctrl.config.tracks">&ndash;&gt;-->
-        <!--&lt;!&ndash;</vg-media>&ndash;&gt;-->
-        <!--&lt;!&ndash;<vg-controls>&ndash;&gt;-->
-          <!--&lt;!&ndash;<vg-play-pause-button></vg-play-pause-button>&ndash;&gt;-->
-          <!--&lt;!&ndash;<vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>&ndash;&gt;-->
-          <!--&lt;!&ndash;<vg-scrub-bar>&ndash;&gt;-->
-            <!--&lt;!&ndash;<vg-scrub-bar-current-time></vg-scrub-bar-current-time>&ndash;&gt;-->
-          <!--&lt;!&ndash;</vg-scrub-bar>&ndash;&gt;-->
-          <!--&lt;!&ndash;<vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>&ndash;&gt;-->
-          <!--&lt;!&ndash;<vg-volume>&ndash;&gt;-->
-            <!--&lt;!&ndash;<vg-mute-button></vg-mute-button>&ndash;&gt;-->
-            <!--&lt;!&ndash;<vg-volume-bar></vg-volume-bar>&ndash;&gt;-->
-          <!--&lt;!&ndash;</vg-volume>&ndash;&gt;-->
-          <!--&lt;!&ndash;<vg-fullscreen-button></vg-fullscreen-button>&ndash;&gt;-->
-        <!--&lt;!&ndash;</vg-controls>&ndash;&gt;-->
-        <!--&lt;!&ndash;<my-replay-plugin></my-replay-plugin>&ndash;&gt;-->
-        <!--&lt;!&ndash;<vg-overlay-play></vg-overlay-play>&ndash;&gt;-->
-        <!--&lt;!&ndash;<vg-buffering></vg-buffering>&ndash;&gt;-->
-        <!--&lt;!&ndash;<vg-poster vg-url='controller.config.plugins.poster'></vg-poster>&ndash;&gt;-->
-      <!--&lt;!&ndash;</videogular>&ndash;&gt;-->
-      <!--&lt;!&ndash;<form name="newClipFor">&ndash;&gt;-->
-        <!--&lt;!&ndash;<md-input-container>&ndash;&gt;-->
-          <!--&lt;!&ndash;<label for="startTime">Start Time (seconds):</label>&ndash;&gt;-->
-          <!--&lt;!&ndash;<input type="number" id="startTime" name="startTime" ng-model="$ctrl.startTime" required>&ndash;&gt;-->
-        <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
-        <!--&lt;!&ndash;<md-input-container>&ndash;&gt;-->
-          <!--&lt;!&ndash;<label for="endTime">End Time (seconds):</label>&ndash;&gt;-->
-          <!--&lt;!&ndash;<input type="number" id="endTime" name="endTime" ng-model="$ctrl.endTime" required>&ndash;&gt;-->
-        <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
-        <!--&lt;!&ndash;<md-button class="md-primary" ng-click="$ctrl.createClip($ctrl.startTime, $ctrl.endTime)" ng-disabled="newClipFor.$invalid">Create clip</md-button>&ndash;&gt;-->
-      <!--&lt;!&ndash;</form>&ndash;&gt;-->
-    <!--&lt;!&ndash;</md-card-content>&ndash;&gt;-->
-    <!--&lt;!&ndash;<md-card-actions layout="row" layout-align="end center">&ndash;&gt;-->
-      <!--&lt;!&ndash;<md-button ng-click="$ctrl.setVideo($index)" ng-repeat="clip in $ctrl.videos">Clip {{ $index + 1 }}</md-button>&ndash;&gt;-->
-    <!--&lt;!&ndash;</md-card-actions>&ndash;&gt;-->
-  <!--&lt;!&ndash;</md-card>&ndash;&gt;-->
+  <!--<md-card>-->
+    <!--<md-card-title>-->
+      <!--<md-card-title-text>-->
+        <!--<span class="md-headline">Card with image</span>-->
+      <!--</md-card-title-text>-->
+    <!--</md-card-title>-->
+    <!--<md-card-content>-->
+      <!--<videogular vg-theme="$ctrl.config.theme" vg-player-ready="$ctrl.onPlayerReady($API)">-->
+        <!--<vg-media vg-src="$ctrl.config.sources"-->
+                  <!--vg-tracks="$ctrl.config.tracks">-->
+        <!--</vg-media>-->
+        <!--<vg-controls>-->
+          <!--<vg-play-pause-button></vg-play-pause-button>-->
+          <!--<vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>-->
+          <!--<vg-scrub-bar>-->
+            <!--<vg-scrub-bar-current-time></vg-scrub-bar-current-time>-->
+          <!--</vg-scrub-bar>-->
+          <!--<vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>-->
+          <!--<vg-volume>-->
+            <!--<vg-mute-button></vg-mute-button>-->
+            <!--<vg-volume-bar></vg-volume-bar>-->
+          <!--</vg-volume>-->
+          <!--<vg-fullscreen-button></vg-fullscreen-button>-->
+        <!--</vg-controls>-->
+        <!--<my-replay-plugin></my-replay-plugin>-->
+        <!--<vg-overlay-play></vg-overlay-play>-->
+        <!--<vg-buffering></vg-buffering>-->
+        <!--<vg-poster vg-url='controller.config.plugins.poster'></vg-poster>-->
+      <!--</videogular>-->
+      <!--<form name="newClipFor">-->
+        <!--<md-input-container>-->
+          <!--<label for="startTime">Start Time (seconds):</label>-->
+          <!--<input type="number" id="startTime" name="startTime" ng-model="$ctrl.startTime" required>-->
+        <!--</md-input-container>-->
+        <!--<md-input-container>-->
+          <!--<label for="endTime">End Time (seconds):</label>-->
+          <!--<input type="number" id="endTime" name="endTime" ng-model="$ctrl.endTime" required>-->
+        <!--</md-input-container>-->
+        <!--<md-button class="md-primary" ng-click="$ctrl.createClip($ctrl.startTime, $ctrl.endTime)" ng-disabled="newClipFor.$invalid">Create clip</md-button>-->
+      <!--</form>-->
+    <!--</md-card-content>-->
+    <!--<md-card-actions layout="row" layout-align="end center">-->
+      <!--<md-button ng-click="$ctrl.setVideo($index)" ng-repeat="clip in $ctrl.videos">Clip {{ $index + 1 }}</md-button>-->
+    <!--</md-card-actions>-->
+  <!--</md-card>-->
 <!--</md-content>-->

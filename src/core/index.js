@@ -23,7 +23,7 @@ const coreModule = angular
         url: '/videos/:id/clips',
         views: {
           'main': {
-            template: '<h3>Video</h3>'
+            template: '<vp-video-play></vp-video-play>'
           },
           'side': {
             template: '<h3>Clips list</h3>'

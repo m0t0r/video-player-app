@@ -4,10 +4,13 @@ import template from './vp-content.html';
 
 class VpContentCtrl {
 
-  constructor($sce, VideosService) {
-    this.selectedVideo = VideosService.getSelectedVideo();
-    
-    
+  constructor($sce, VideosService, $stateParams) {
+    if ($stateParams.id) {
+      this.selectedVideo = VideosService.getVideo(parseInt($stateParams.id, 10));
+    } else {
+      this.selectedVideo = VideosService.getSelectedVideo();
+    }
+    console.log('this.selectedVideo', this.selectedVideo);
     this.$sce = $sce;
     this.API = {};
     this.fullVideoUrl = 'http://static.videogular.com/assets/videos/videogular.mp4';
@@ -69,7 +72,7 @@ class VpContentCtrl {
   };
 }
 
-VpContentCtrl.$inject = ['$sce', 'VideosService'];
+VpContentCtrl.$inject = ['$sce', 'VideosService', '$stateParams'];
 
 let VpContentComponent = {
   template,
