@@ -1,33 +1,35 @@
-<div class="vp-video-details">
-  <div class="vp-video-details__title">
-    <ng-md-icon icon="videocam" size="64"></ng-md-icon>
-  </div>
-  <md-list>
-    <md-list-item>
-      <p>Private</p>
-      <md-switch class="md-secondary" ng-model="$ctrl.selectedVideo.private"></md-switch>
-    </md-list-item>
-    <md-divider></md-divider>
-    <md-list-item >
-      <div class="md-list-item-text">
-        <span>Name:</span>
-        <span>{{ $ctrl.selectedVideo.name }}</span>
-      </div>
-    </md-list-item>
-    <md-list-item >
-      <div class="md-list-item-text">
-        <span>Created:</span>
-        <span>{{ $ctrl.selectedVideo.created_at | date:'MMM d, y' }}</span>
-      </div>
-    </md-list-item>
-    <md-divider></md-divider>
-    <md-list-item >
-      <div class="md-list-item-text">
-        <span>Description:</span>
-        <span>{{ $ctrl.selectedVideo.description }}</span>
-      </div>
-    </md-list-item>
-    <md-divider></md-divider>
-  </md-list>
-  <md-button class="md-raised" ui-sref="clips({id: $ctrl.selectedVideo.id})">View</md-button>
-</div>
+<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-xs')">
+  <md-content class="vp-video-details">
+    <div class="vp-video-details__title">
+      <ng-md-icon icon="videocam" size="64"></ng-md-icon>
+    </div>
+    <md-list>
+      <md-list-item>
+        <p>Protected</p>
+        <md-switch class="md-secondary" ng-model="$ctrl.selectedVideo.protected"></md-switch>
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item >
+        <div class="md-list-item-text">
+          <span>Name:</span>
+          <span>{{ $ctrl.selectedVideo.name }}</span>
+        </div>
+      </md-list-item>
+      <md-list-item >
+        <div class="md-list-item-text">
+          <span>Created:</span>
+          <span>{{ $ctrl.selectedVideo.created_at | date:'MMM d, y' }}</span>
+        </div>
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item >
+        <div class="md-list-item-text">
+          <span>Description:</span>
+          <span>{{ $ctrl.selectedVideo.description }}</span>
+        </div>
+      </md-list-item>
+      <md-divider></md-divider>
+    </md-list>
+    <md-button class="md-raised" ui-sref="clips({id: $ctrl.selectedVideo.id})">View</md-button>
+  </md-content>
+</md-sidenav>

@@ -9,7 +9,6 @@ class VpClipsListCtrl {
   constructor($stateParams, VideosService, $mdDialog) {
     this.$mdDialog = $mdDialog;
     this.video = VideosService.getVideo(parseInt($stateParams.id, 10));
-    console.log(this.video);
   }
 
   createClip($event) {

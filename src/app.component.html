@@ -1,7 +1,15 @@
+<!--<div layout="row" layout-fill>-->
+  <!--<div layout="column" flex>-->
+    <!--<vp-toolbar></vp-toolbar>-->
+    <!--<vp-content flex layout="row"></vp-content>-->
+  <!--</div>-->
+  <!--&lt;!&ndash;<vp-sidenav layout></vp-sidenav>&ndash;&gt;-->
+<!--</div>-->
 <div layout="row" layout-fill>
+  <vp-menu-sidenav layout></vp-menu-sidenav>
   <div layout="column" flex>
     <vp-toolbar></vp-toolbar>
-    <vp-content flex layout="row"></vp-content>
+    <!--<vp-content flex layout="row"></vp-content>-->
+    <div ui-view="main" flex></div>
   </div>
-  <!--<vp-sidenav layout></vp-sidenav>-->
 </div>

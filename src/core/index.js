@@ -10,26 +10,36 @@ const coreModule = angular
   function routesConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('videos', {
+        abstract: true,
         url: '/videos',
         views: {
           'main': {
-            template: '<vp-videos selected-video="$ctrl.selectedVideo"></vp-videos>'
+            template: '<vp-videos-page layout="row"></vp-videos-page>'
+          }
+        }
+      }).state('videos.list', {
+        url: '',
+        views: {
+          'content': {
+            template: '<vp-videos-list videos="$ctrl.videos" selected-video="$ctrl.selectedVideo"></vp-videos-list>'
           },
           'side': {
             template: '<vp-video-details selected-video="$ctrl.selectedVideo"></vp-video-details>'
           }
         }
-      }).state('clips', {
-        url: '/videos/:id/clips',
-        views: {
-          'main': {
-            template: '<vp-video-play></vp-video-play>'
-          },
-          'side': {
-            template: '<vp-clips-list></vp-clips-list>'
-          }
-        }
       });
+
+      //.state('clips', {
+      //  url: '/videos/:id/clips',
+      //  views: {
+      //    'main': {
+      //      template: '<vp-video-play></vp-video-play>'
+      //    },
+      //    'side': {
+      //      template: '<vp-clips-list></vp-clips-list>'
+      //    }
+      //  }
+      //});
 
     $urlRouterProvider.otherwise('/videos');
   }
