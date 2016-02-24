@@ -9,3 +9,8 @@
 .vp-clips-list .vp-clips-list__icon-clip {
   color: #3F51B5;
 }
+
+.vp-clips-list md-list-item.selected {
+  background: rgba(158,158,158,0.2);
+}
+

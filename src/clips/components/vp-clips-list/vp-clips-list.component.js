@@ -6,9 +6,15 @@ import './vp-clips-list.css';
 
 class VpClipsListCtrl {
 
-  constructor($stateParams, VideosService, $mdDialog) {
+  constructor($rootScope, $stateParams, VideosService, $mdDialog) {
+    this.$rootScope = $rootScope;
     this.$mdDialog = $mdDialog;
-    this.video = VideosService.getVideo(parseInt($stateParams.id, 10));
+    this.VideosService = VideosService;
+    this.video = this.VideosService.getVideo(parseInt($stateParams.id, 10));
+  }
+
+  selectVideo(index) {
+    this.selectedVideoIndex = index;
   }
 
   createClip($event) {
@@ -31,19 +37,26 @@ class VpClipsListCtrl {
       controllerAs: 'ctrl',
       clickOutsideToClose: true
     }).then((clip) => {
-      clip.created_at = new Date();
-      console.log('clip', clip);
+      let newClip = {
+        name: clip.name,
+        description: clip.description,
+        created_at: new Date(),
+        url: this.video.url + `#t=${clip.startTime},${clip.endTime}`
+      };
+
+      this.$rootScope.$broadcast('vp-add-new-clip', newClip);
+      this.VideosService.addClip(this.video, newClip);
     });
   }
 }
 
-VpClipsListCtrl.$inject = ['$stateParams', 'VideosService', '$mdDialog'];
+VpClipsListCtrl.$inject = ['$rootScope', '$stateParams', 'VideosService', '$mdDialog'];
 
 let VpClipsListComponent = {
   template,
   controller: VpClipsListCtrl,
   bindings: {
-    selectedVideo: '='
+    selectedVideoIndex: '='
   }
 };
 

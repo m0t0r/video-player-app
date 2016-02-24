@@ -14,6 +14,7 @@ class VpVideosPageCtrl {
     // select first video item by default
     if (this.videos.length) {
       this.selectedVideo = this.videos[0];
+      this.selectedVideoIndex = 0;
     }
   };
 }

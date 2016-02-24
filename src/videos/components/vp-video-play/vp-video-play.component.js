@@ -5,20 +5,34 @@ import './vp-video-play.css';
 
 class VpVideoPlayCtrl {
 
-  constructor($sce, VideosService) {
+  constructor($scope, $sce, VideosService, $stateParams) {
+    this.$scope = $scope;
     this.$sce = $sce;
+    this.VideosService = VideosService;
+    this.$stateParams = $stateParams;
     this.API = {};
-    // TODO: Load from VideosService
-    this.videos = [
-      {
-        sources: [
-          {src: $sce.trustAsResourceUrl('http://static.videogular.com/assets/videos/videogular.mp4'), type: 'video/mp4'}
-        ]
-      }
-    ];
+    this.videos = [];
+  }
+
+  onPlayerReady(API) {
+    this.API = API;
+  };
+
+  $onInit() {
+    var video = this.VideosService.getVideo(parseInt(this.$stateParams.id, 10));
+    // set full video as the first item
+    this.videos.push(this.getVideoSource(video));
+    this.videos = this.videos.concat(video.clips.map((clip) => this.getVideoSource(clip)));
+
+    this.$scope.$watch('$ctrl.selectedVideoIndex', (newVideoIndex) => {
+      this.API.stop();
+      this.config.sources = this.videos[newVideoIndex].sources;
+    });
+
+    this.$scope.$on('vp-add-new-clip', (e, clip) => this.videos.push(this.getVideoSource(clip)));
 
     this.config = {
-      sources: this.videos[0].sources,
+      sources: this.videos[this.selectedVideoIndex].sources,
       tracks: [
         {
           src: 'http://www.videogular.com/assets/subs/pale-blue-dot.vtt',
@@ -34,15 +48,25 @@ class VpVideoPlayCtrl {
       }
     };
   }
+
+  getVideoSource(video) {
+    return {
+      sources: [
+        {
+          src: this.$sce.trustAsResourceUrl(video.url), type: 'video/mp4'
+        }
+      ]
+    }
+  }
 }
 
-VpVideoPlayCtrl.$inject = ['$sce', 'VideosService'];
+VpVideoPlayCtrl.$inject = ['$scope', '$sce', 'VideosService', '$stateParams'];
 
 let VpVideoPlayComponent = {
   template,
   controller: VpVideoPlayCtrl,
   bindings: {
-    selectedVideo: '='
+    selectedVideoIndex: '='
   }
 };
 

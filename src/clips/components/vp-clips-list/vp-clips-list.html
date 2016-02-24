@@ -1,44 +1,38 @@
-<md-toolbar md-scroll-shrink class="md-accent" md-whiteframe="2">
-  <div class="md-toolbar-tools">
-    <h3>
-      Clips
-    </h3>
-    <span flex></span>
-    <md-button class="md-icon-button" aria-label="Favorite">
-      <ng-md-icon icon="clear_all"></ng-md-icon>
-    </md-button>
-  </div>
-</md-toolbar>
-<md-list class="vp-clips-list">
-  <md-list-item class="md-2-line"
-                ng-click="$ctrl.selectVideo($ctrl.video)">
-    <ng-md-icon icon="videocam" size="40" class="vp-clips-list__icon vp-clips-list__icon-video"></ng-md-icon>
-    <div class="md-list-item-text" layout="column">
-      <h3>{{ $ctrl.video.name }}</h3>
-      <p>Added: {{ $ctrl.video.created_at | date:'MMM d, y' }}</p>
+<md-sidenav layout="column" class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-xs')">
+  <md-toolbar class="md-accent" md-whiteframe="2">
+    <div class="md-toolbar-tools">
+      <h3>Clips</h3>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="Favorite">
+        <ng-md-icon icon="clear_all"></ng-md-icon>
+      </md-button>
     </div>
-  </md-list-item>
+  </md-toolbar>
+  <md-content flex layout="column">
+    <md-list class="vp-clips-list">
+      <md-list-item class="md-2-line"
+                    ng-click="$ctrl.selectVideo(0)"
+                    ng-class="{'selected': $ctrl.selectedVideoIndex === 0}">
+        <ng-md-icon icon="videocam" size="40" class="vp-clips-list__icon vp-clips-list__icon-video"></ng-md-icon>
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ $ctrl.video.name }}</h3>
+          <p>Added: {{ $ctrl.video.created_at | date:'MMM d, y' }}</p>
+        </div>
+      </md-list-item>
 
-  <md-list-item class="md-2-line"
-                ng-repeat="clip in $ctrl.video.clips | orderBy: 'created_at':true"
-                ng-click="$ctrl.selectVideo(clip)">
-    <ng-md-icon icon="video_collection" size="40" class="vp-clips-list__icon vp-clips-list__icon-clip"></ng-md-icon>
-    <div class="md-list-item-text" layout="column">
-      <h3>{{ clip.name }}</h3>
-      <p>Added: {{ clip.created_at | date:'MMM d, y' }}</p>
-    </div>
-  </md-list-item>
-  <!--<md-list-item class="md-2-line"-->
-                <!--ng-repeat="video in $ctrl.videos | orderBy: 'created_at':true"-->
-                <!--ng-click="$ctrl.viewDetails(video)"-->
-                <!--ng-class="{'selected': video === $ctrl.selectedVideo}">-->
-    <!--<ng-md-icon icon="play_circle_fill" size="40" class="vp-videos__play-icon"></ng-md-icon>-->
-    <!--<div class="md-list-item-text" layout="column">-->
-      <!--<h3>{{ video.name }}</h3>-->
-      <!--<p>Added: {{ video.created_at | date:'MMM d, y' }}</p>-->
-    <!--</div>-->
-  <!--</md-list-item>-->
-</md-list>
-<md-button class="md-fab md-fab-bottom-right" ng-click="$ctrl.createClip($event)">
-  <ng-md-icon icon="add"></ng-md-icon>
-</md-button>
+      <md-list-item class="md-2-line"
+                    ng-repeat="(key, clip) in $ctrl.video.clips track by $index"
+                    ng-click="$ctrl.selectVideo($index + 1)"
+                    ng-class="{'selected': $ctrl.selectedVideoIndex === $index + 1}">
+        <ng-md-icon icon="video_collection" size="40" class="vp-clips-list__icon vp-clips-list__icon-clip"></ng-md-icon>
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ clip.name }}</h3>
+          <p>Added: {{ clip.created_at | date:'MMM d, y' }}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+    <md-button class="md-fab md-fab-bottom-right" ng-click="$ctrl.createClip($event)">
+      <ng-md-icon icon="add"></ng-md-icon>
+    </md-button>
+  </md-content>
+</md-sidenav>

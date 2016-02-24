@@ -30,6 +30,8 @@ import './vp-toolbar.css';
        clickOutsideToClose: true
      }).then((video) => {
        video.created_at = new Date();
+       video.clips = [];
+       video.protected = false;
        this.VideosService.addVideo(video);
      });
    }
