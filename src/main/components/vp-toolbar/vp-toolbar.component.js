@@ -5,16 +5,24 @@ import './vp-toolbar.css';
 
  class VpToolbarCtrl {
 
-   constructor($rootScope, $mdSidenav, $mdDialog, VideosService) {
+   constructor($rootScope, $mdSidenav, $mdDialog, VideosService, $stateParams) {
      this.$mdDialog = $mdDialog;
      this.$mdSidenav = $mdSidenav;
      this.VideosService = VideosService;
      this.$rootScope = $rootScope;
+     this.$stateParams = $stateParams;
    }
 
    $onInit() {
      this.$rootScope.$on('$stateChangeSuccess', (event, toState) => {
         this.hideFab = toState.name !== 'videos.list';
+
+        // naive implementation of breadcrumbs
+        if (toState.name === 'videos.clips') {
+          this.video = this.VideosService.getVideo(parseInt(this.$stateParams.id, 10));
+        } else {
+          this.video = null;
+        }
      });
    }
 
@@ -49,7 +57,7 @@ import './vp-toolbar.css';
    }
  }
 
-VpToolbarCtrl.$inject = ['$rootScope', '$mdSidenav', '$mdDialog', 'VideosService'];
+VpToolbarCtrl.$inject = ['$rootScope', '$mdSidenav', '$mdDialog', 'VideosService', '$stateParams'];
 
 let VpToolBarComponent = {
   template,

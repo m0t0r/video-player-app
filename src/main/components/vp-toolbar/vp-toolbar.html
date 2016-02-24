@@ -12,6 +12,8 @@
   <div class="md-toolbar-tools md-toolbar-tools-bottom">
     <div class="vp-toolbar-breadcrumbs">
       <span>My Videos</span>
+      <ng-md-icon icon="keyboard_arrow_right" ng-show="$ctrl.video"></ng-md-icon>
+      <span ng-show="$ctrl.video">{{ $ctrl.video.name }}</span>
     </div>
   </div>
 </md-toolbar>
