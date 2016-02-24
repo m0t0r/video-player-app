@@ -5,9 +5,21 @@ import './vp-toolbar.css';
 
  class VpToolbarCtrl {
 
-   constructor($mdDialog, VideosService) {
+   constructor($rootScope, $mdSidenav, $mdDialog, VideosService) {
      this.$mdDialog = $mdDialog;
+     this.$mdSidenav = $mdSidenav;
      this.VideosService = VideosService;
+     this.$rootScope = $rootScope;
+   }
+
+   $onInit() {
+     this.$rootScope.$on('$stateChangeSuccess', (event, toState) => {
+        this.hideFab = toState.name !== 'videos.list';
+     });
+   }
+
+   toggleMenuSidenav() {
+     this.$mdSidenav('menu').toggle();
    }
 
    addVideo($event) {
@@ -37,7 +49,7 @@ import './vp-toolbar.css';
    }
  }
 
-VpToolbarCtrl.$inject = ['$mdDialog', 'VideosService'];
+VpToolbarCtrl.$inject = ['$rootScope', '$mdSidenav', '$mdDialog', 'VideosService'];
 
 let VpToolBarComponent = {
   template,

@@ -1,8 +1,13 @@
-<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="menu" md-is-open="$ctrl.openState"">
   <md-toolbar class="md-theme-indigo">
     <h1 class="md-toolbar-tools">Menu</h1>
   </md-toolbar>
   <md-content layout-padding>
-    <h2>Menu items</h2>
+    <md-list>
+      <md-list-item ng-click="$ctrl.goTo('videos.list')">
+        <p>Videos</p>
+        <ng-md-icon icon="videocam" class="vp-menu-sidenav__icon-videos"></ng-md-icon>
+      </md-list-item>
+    </md-list>
   </md-content>
 </md-sidenav>

@@ -1,9 +1,11 @@
 <md-toolbar class="md-tall vp-toolbar" md-whiteframe="3">
   <div class="md-toolbar-tools">
-    <md-button class="md-icon-button" aria-label="Settings">
+    <md-button class="md-icon-button" aria-label="Menu" ng-click="$ctrl.toggleMenuSidenav()">
       <ng-md-icon icon="menu"></ng-md-icon>
     </md-button>
-    <md-button class="md-fab md-fab-top-left vp-add-video-fab" ng-click="$ctrl.addVideo()">
+    <md-button class="md-fab md-fab-top-left vp-add-video-fab"
+               ng-click="$ctrl.addVideo()"
+               ng-hide="$ctrl.hideFab">
       <ng-md-icon icon="add"></ng-md-icon>
     </md-button>
   </div>

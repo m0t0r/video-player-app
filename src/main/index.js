@@ -8,6 +8,6 @@ import VpMenuSidenavComponent from './components/vp-menu-sidenav/vp-menu-sidenav
 const mainModule = angular
   .module('videoPlayerApp.main', [])
   .component('vpToolbar', VpToolbarComponent)
-  .component('vpMenuSidenav', VpMenuSidenavComponent)
+  .component('vpMenuSidenav', VpMenuSidenavComponent);
 
 export default mainModule.name;
