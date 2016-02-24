@@ -15,8 +15,11 @@ class VideosService {
           {
             id: 0,
             name: 'Test Clip 1',
+            description: 'A Test Clip 1',
             url: 'http://static.videogular.com/assets/videos/videogular.mp4#t=5,15',
-            created_at: new Date()
+            created_at: new Date(),
+            start_time: 5,
+            end_time: 15
           }
         ]
       }
@@ -51,6 +54,17 @@ class VideosService {
     let index = this._videos.indexOf(video);
     if (index > -1) {
       this._videos[index].clips = [];
+    }
+  }
+
+  updateClip(video, index, clip) {
+    let videoIndex = this._videos.indexOf(video);
+    if (videoIndex > -1) {
+      for (let key in clip) {
+        if (this._videos[videoIndex].clips[index][key]) {
+          this._videos[videoIndex].clips[index][key] = clip[key];
+        }
+      }
     }
   }
 }

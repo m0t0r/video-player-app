@@ -1,4 +1,9 @@
-<md-card>
+<md-card class="vp-video-play">
+  <md-card-actions layout="row" layout-align="end start" ng-if="$ctrl.selectedVideoIndex !== 0" ng-click="$ctrl.isEditMode = !$ctrl.isEditMode">
+    <md-button class="vp-video-play__edit-btn">
+      <ng-md-icon icon="edit"></ng-md-icon>
+    </md-button>
+  </md-card-actions>
   <md-card-content>
     <videogular vg-theme="$ctrl.config.theme" vg-player-ready="$ctrl.onPlayerReady($API)">
       <vg-media vg-src="$ctrl.config.sources"
@@ -22,5 +27,48 @@
       <vg-buffering></vg-buffering>
       <vg-poster vg-url='controller.config.plugins.poster'></vg-poster>
     </videogular>
+
+    <form name="editVideoForm" ng-submit="$ctrl.saveClip()" layout="column" ng-show="$ctrl.isEditMode">
+      <div layout="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" ng-model="$ctrl.videos[$ctrl.selectedVideoIndex].name" required>
+          <div ng-messages="editVideoForm.name.$error">
+            <div ng-message="required">This field is required</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="description">Description</label>
+          <input type="text" name="description" id="description" ng-model="$ctrl.videos[$ctrl.selectedVideoIndex].description" required>
+          <div ng-messages="editVideoForm.description.$error">
+            <div ng-message="required">This field is required</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row" ng-if="$ctrl.selectedVideoIndex !== 0">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="startTime">Start Time</label>
+          <input type="number" name="startTime" id="startTime" ng-model="$ctrl.videos[$ctrl.selectedVideoIndex].start_time" required>
+          <div ng-messages="editVideoForm.start_time.$error">
+            <div ng-message="required">This field is required</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="endTime">End Time</label>
+          <input type="number" name="endTime" id="endTime" ng-model="$ctrl.videos[$ctrl.selectedVideoIndex].end_time" required>
+          <div ng-messages="editVideoForm.end_time.$error">
+            <div ng-message="required">This field is required</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-button type="submit" class="md-primary md-raised" ng-disabled="editVideoForm.$invalid">
+          Save
+        </md-button>
+        <md-button ng-click="$ctrl.cancelEditing(editVideoForm)">
+          Cancel
+        </md-button>
+      </div>
+    </form>
   </md-card-content>
 </md-card>

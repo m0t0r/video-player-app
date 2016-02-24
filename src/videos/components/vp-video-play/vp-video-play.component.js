@@ -19,10 +19,10 @@ class VpVideoPlayCtrl {
   };
 
   $onInit() {
-    var video = this.VideosService.getVideo(parseInt(this.$stateParams.id, 10));
+    this.video = this.VideosService.getVideo(parseInt(this.$stateParams.id, 10));
     // set full video as the first item
-    this.videos.push(this.getVideoSource(video));
-    this.videos = this.videos.concat(video.clips.map((clip) => this.getVideoSource(clip)));
+    this.videos.push(this.getVideoSource(this.video));
+    this.videos = this.videos.concat(this.video.clips.map((clip) => this.getVideoSource(clip)));
 
     this.$scope.$watch('$ctrl.selectedVideoIndex', (newVideoIndex) => {
       this.API.stop();
@@ -51,12 +51,27 @@ class VpVideoPlayCtrl {
 
   getVideoSource(video) {
     return {
+      name: video.name,
+      description: video.description,
+      start_time: video.start_time,
+      end_time: video.end_time,
       sources: [
         {
           src: this.$sce.trustAsResourceUrl(video.url), type: 'video/mp4'
         }
       ]
     }
+  }
+
+  saveClip() {
+    this.videos[this.selectedVideoIndex].sources.src = this.$sce.trustAsResourceUrl(this.video.url + `#t=${this.videos[this.selectedVideoIndex].startTime},${this.videos[this.selectedVideoIndex].endTime}`);
+    this.VideosService.updateClip(this.video, this.selectedVideoIndex - 1, this.videos[this.selectedVideoIndex]);
+    this.isEditMode = false;
+  }
+
+  cancelEditing(form) {
+    form.$rollbackViewValue();
+    this.isEditMode = false;
   }
 }
 
