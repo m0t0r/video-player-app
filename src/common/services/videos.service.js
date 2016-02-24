@@ -46,6 +46,13 @@ class VideosService {
   getVideo(index) {
     return this._videos[index];
   }
+
+  removeAllClips(video) {
+    let index = this._videos.indexOf(video);
+    if (index > -1) {
+      this._videos[index].clips = [];
+    }
+  }
 }
 
 export default VideosService;

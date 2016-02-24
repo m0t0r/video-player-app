@@ -17,7 +17,6 @@ import core from './core';
 import common from './common';
 import main from './main';
 import videos from './videos';
-import clips from './clips';
 
 import AppComponent from './app.component';
 
@@ -37,7 +36,6 @@ import AppComponent from './app.component';
       core,
       common,
       main,
-      videos,
-      clips
+      videos
     ])
     .component('app', AppComponent);
