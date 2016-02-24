@@ -1,6 +1,6 @@
 <md-list class="vp-videos-list">
   <md-list-item class="md-2-line"
-                ng-repeat="video in $ctrl.videos | orderBy: 'created_at':true"
+                ng-repeat="video in $ctrl.videos"
                 ng-click="$ctrl.viewDetails(video)"
                 ng-class="{'selected': video === $ctrl.selectedVideo}">
     <ng-md-icon icon="play_circle_fill" size="40" class="vp-videos__play-icon"></ng-md-icon>
