@@ -1,7 +1,7 @@
 'use strict';
 
 class VideosService {
-  
+
   constructor() {
     this._videos = [
       {
