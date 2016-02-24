@@ -20,33 +20,39 @@ class VpVideoPlayCtrl {
 
   $onInit() {
     this.video = this.VideosService.getVideo(parseInt(this.$stateParams.id, 10));
-    // set full video as the first item
-    this.videos.push(this.getVideoSource(this.video));
-    this.videos = this.videos.concat(this.video.clips.map((clip) => this.getVideoSource(clip)));
+
+    if (this.video) {
+      // set full video as the first item
+      this.videos.push(this.getVideoSource(this.video));
+      this.videos = this.videos.concat(this.video.clips.map((clip) => this.getVideoSource(clip)));
+
+      this.config = {
+        sources: this.videos[this.selectedVideoIndex].sources,
+        tracks: [
+          {
+            src: 'http://www.videogular.com/assets/subs/pale-blue-dot.vtt',
+            kind: 'subtitles',
+            srclang: 'en',
+            label: 'English',
+            default: ''
+          }
+        ],
+        theme: 'node_modules/videogular-themes-default/videogular.css',
+        plugins: {
+          poster: 'http://www.videogular.com/assets/images/videogular.png'
+        }
+      };
+    }
+
 
     this.$scope.$watch('$ctrl.selectedVideoIndex', (newVideoIndex) => {
-      this.API.stop();
+      if (this.API.stop()) {
+        this.API.stop();
+      }
       this.config.sources = this.videos[newVideoIndex].sources;
     });
 
     this.$scope.$on('vp-add-new-clip', (e, clip) => this.videos.push(this.getVideoSource(clip)));
-
-    this.config = {
-      sources: this.videos[this.selectedVideoIndex].sources,
-      tracks: [
-        {
-          src: 'http://www.videogular.com/assets/subs/pale-blue-dot.vtt',
-          kind: 'subtitles',
-          srclang: 'en',
-          label: 'English',
-          default: ''
-        }
-      ],
-      theme: 'node_modules/videogular-themes-default/videogular.css',
-      plugins: {
-        poster: 'http://www.videogular.com/assets/images/videogular.png'
-      }
-    };
   }
 
   getVideoSource(video) {

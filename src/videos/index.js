@@ -1,6 +1,10 @@
 'use strict';
 
 import angular from 'angular';
+import ngSanitize from 'angular-sanitize';
+import common from '../common';
+import uiRouter from 'angular-ui-router';
+
 import VpVideosPageComponent from './components/vp-videos-page/vp-videos-page.component';
 import VpVideosListComponent from './components/vp-videos-list/vp-videos-list.component';
 import VpVideoDetailsComponent from './components/vp-video-details/vp-video-details.component';
@@ -8,7 +12,7 @@ import VpVideoPlayComponent from './components/vp-video-play/vp-video-play.compo
 import VpClipsListComponent from './components/vp-clips-list/vp-clips-list.component';
 
 const videosModule = angular
-  .module('videoPlayerApp.videos', ['ngSanitize'])
+  .module('videoPlayerApp.videos', [ngSanitize, common, uiRouter])
   .component('vpVideosPage', VpVideosPageComponent)
   .component('vpVideosList', VpVideosListComponent)
   .component('vpVideoDetails', VpVideoDetailsComponent)
