@@ -49,7 +49,7 @@ class VpVideoPlayCtrl {
       if (this.API.stop()) {
         this.API.stop();
       }
-
+      this.isEditMode = false;
       this.config.sources = this.videos[newVideoIndex].sources;
     });
 
@@ -77,9 +77,13 @@ class VpVideoPlayCtrl {
   }
 
   saveClip() {
-    this.videos[this.selectedVideoIndex].sources.src = this.$sce.trustAsResourceUrl(this.video.url + `#t=${this.videos[this.selectedVideoIndex].startTime},${this.videos[this.selectedVideoIndex].endTime}`);
+    let newUrl = this.video.url + `#t=${this.videos[this.selectedVideoIndex].start_time},${this.videos[this.selectedVideoIndex].end_time}`;
+    this.videos[this.selectedVideoIndex].url = newUrl;
+    this.videos[this.selectedVideoIndex].sources[0].src = this.$sce.trustAsResourceUrl(newUrl);
+
     this.VideosService.updateClip(this.video, this.selectedVideoIndex - 1, this.videos[this.selectedVideoIndex]);
     this.isEditMode = false;
+    console.log('this.videos[this.selectedVideoIndex]', this.videos[this.selectedVideoIndex]);
   }
 
   cancelEditing(form) {

@@ -3,7 +3,7 @@
     <div class="md-toolbar-tools">
       <h3>Clips</h3>
       <span flex></span>
-      <md-button ng-show="$ctrl.video.clips.length" class="md-icon-button" aria-label="Remove clips" ng-click="$ctrl.removeAllClips($event)">
+      <md-button aria-label="Remove all clip" ng-show="$ctrl.video.clips.length" class="md-icon-button" aria-label="Remove clips" ng-click="$ctrl.removeAllClips($event)">
         <ng-md-icon icon="clear_all"></ng-md-icon>
       </md-button>
     </div>
@@ -31,7 +31,7 @@
         </div>
       </md-list-item>
     </md-list>
-    <md-button class="md-fab md-fab-bottom-right" ng-click="$ctrl.createClip($event)">
+    <md-button aria-label="Create a clip" class="md-fab md-fab-bottom-right" ng-click="$ctrl.createClip($event)">
       <ng-md-icon icon="add"></ng-md-icon>
     </md-button>
   </md-content>
