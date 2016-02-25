@@ -14,7 +14,7 @@ const coreModule = angular
         url: '/videos',
         views: {
           'main': {
-            template: '<vp-videos-page layout="row"></vp-videos-page>'
+            template: '<vp-videos-page flex layout="row"></vp-videos-page>'
           }
         }
       }).state('videos.list', {
@@ -24,7 +24,7 @@ const coreModule = angular
             template: '<vp-videos-list videos="$ctrl.videos" selected-video="$ctrl.selectedVideo"></vp-videos-list>'
           },
           'side': {
-            template: '<vp-video-details selected-video="$ctrl.selectedVideo"></vp-video-details>'
+            template: '<vp-video-details flex layout="row" layout-fill selected-video="$ctrl.selectedVideo"></vp-video-details>'
           }
         }
       }).state('videos.clips', {
@@ -34,7 +34,7 @@ const coreModule = angular
             template: '<vp-video-play selected-video-index="$ctrl.selectedVideoIndex"></vp-video-play>'
           },
           'side': {
-            template: '<vp-clips-list selected-video-index="$ctrl.selectedVideoIndex"></vp-clips-list>'
+            template: '<vp-clips-list flex layout="row" layout-fill selected-video-index="$ctrl.selectedVideoIndex"></vp-clips-list>'
           }
         }
       });
