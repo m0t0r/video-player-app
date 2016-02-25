@@ -49,10 +49,16 @@ class VpVideoPlayCtrl {
       if (this.API.stop()) {
         this.API.stop();
       }
+
       this.config.sources = this.videos[newVideoIndex].sources;
     });
 
-    this.$scope.$on('vp-add-new-clip', (e, clip) => this.videos.push(this.getVideoSource(clip)));
+    this.$scope.$on('vp-add-new-clip', (e, clip) => {
+      this.videos.push(this.getVideoSource(clip));
+
+    });
+
+    this.$scope.$on('vp-remove-all-clips', (e, clip) => this.videos.length = 1);
   }
 
   getVideoSource(video) {
@@ -61,6 +67,7 @@ class VpVideoPlayCtrl {
       description: video.description,
       start_time: video.start_time,
       end_time: video.end_time,
+      url: video.url,
       sources: [
         {
           src: this.$sce.trustAsResourceUrl(video.url), type: 'video/mp4'

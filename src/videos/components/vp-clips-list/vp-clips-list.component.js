@@ -37,15 +37,10 @@ class VpClipsListCtrl {
       controllerAs: 'ctrl',
       clickOutsideToClose: true
     }).then((clip) => {
-      let newClip = {
-        name: clip.name,
-        description: clip.description,
-        created_at: new Date(),
-        url: this.video.url + `#t=${clip.startTime},${clip.endTime}`
-      };
-
-      this.$rootScope.$broadcast('vp-add-new-clip', newClip);
-      this.VideosService.addClip(this.video, newClip);
+        clip.created_at = new Date(),
+        clip.url = this.video.url + `#t=${clip.start_time},${clip.end_time}`;
+      this.$rootScope.$broadcast('vp-add-new-clip', clip);
+      this.VideosService.addClip(this.video, clip);
     });
   }
 
@@ -58,7 +53,11 @@ class VpClipsListCtrl {
       .ok('Remove')
       .cancel('No');
 
-    this.$mdDialog.show(confirnDialog).then(() => this.VideosService.removeAllClips(this.video));
+    this.$mdDialog.show(confirnDialog).then(() => {
+      this.VideosService.removeAllClips(this.video);
+      this.$rootScope.$broadcast('vp-remove-all-clips');
+      this.selectedVideoIndex = 0;
+    });
   }
 }
 
