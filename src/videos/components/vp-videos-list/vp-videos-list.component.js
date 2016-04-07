@@ -7,6 +7,7 @@ class VpVideosListCtrl {
 
   viewDetails(video){
     this.selectedVideo = video;
+    this.onSelectedVideo({video});
   }
 }
 
@@ -14,8 +15,9 @@ let VpVideosListComponent = {
   template,
   controller: VpVideosListCtrl,
   bindings: {
-    videos: '=',
-    selectedVideo: '='
+    videos: '<',
+    selectedVideo: '<',
+    onSelectedVideo: '&'
   }
 };
 

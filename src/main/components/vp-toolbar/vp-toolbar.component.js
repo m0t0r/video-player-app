@@ -53,6 +53,8 @@ import './vp-toolbar.css';
        video.clips = [];
        video.protected = false;
        this.VideosService.addVideo(video);
+       
+       this.$rootScope.$broadcast('vp-add-video');
      });
    }
  }

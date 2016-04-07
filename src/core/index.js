@@ -23,7 +23,7 @@ const coreModule = angular
         url: '',
         views: {
           'content': {
-            template: '<vp-videos-list videos="$ctrl.videos" selected-video="$ctrl.selectedVideo"></vp-videos-list>'
+            template: '<vp-videos-list videos="$ctrl.videos" selected-video="$ctrl.selectedVideo" on-selected-video="$ctrl.onSelectedVideo(video)"></vp-videos-list>'
           },
           'side': {
             template: '<vp-video-details flex layout="row" layout-fill selected-video="$ctrl.selectedVideo"></vp-video-details>'
