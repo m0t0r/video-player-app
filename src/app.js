@@ -8,6 +8,7 @@ import ngMaterial from 'angular-material';
 import ngSanitize from 'angular-sanitize';
 import ngMdIcons from 'angular-material-icons';
 import uiMask from 'angular-ui-mask';
+import localStorageModule from 'angular-local-storage';
 import videogular from 'videogular';
 import videogularControls from 'videogular-controls';
 import videogularBuffering from 'videogular-buffering';
@@ -30,6 +31,7 @@ import AppComponent from './app.component';
       ngSanitize,
       ngMdIcons,
       uiMask,
+      localStorageModule,
       videogular,
       videogularControls,
       videogularBuffering,

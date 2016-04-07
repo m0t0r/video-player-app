@@ -2,8 +2,17 @@
 
 class VideosService {
 
-  constructor() {
-    this._videos = [
+  constructor(localStorageService) {
+    this.localStorageService = localStorageService;
+
+    // load mock videos
+    if (JSON.parse(this.localStorageService.get('videos')) === void 0) {
+      this.loadMockVideos();
+    }
+  }
+
+  loadMockVideos() {
+    let mockVideoData = [
       {
         id: 0,
         name: 'Test Video 1',
@@ -18,44 +27,55 @@ class VideosService {
             description: 'A Test Clip 1',
             url: 'http://static.videogular.com/assets/videos/videogular.mp4#t=5,15',
             created_at: new Date(),
-            start_time: 5,
-            end_time: 15
+            start_time: '0005',
+            end_time: '0015'
           }
         ]
       }
     ];
+
+    this.localStorageService.set('videos', JSON.stringify(mockVideoData));
   }
 
   getNextId() {
-    return this._videos[this._videos.length - 1].id + 1;
+    let videos = JSON.parse(this.localStorageService.get('videos'));
+    return videos[videos.length - 1].id + 1;
   }
 
   addVideo(video) {
+    let videos = JSON.parse(this.localStorageService.get('videos'));
     video.id = this.getNextId();
-    this._videos.push(video);
+    videos.push(video);
+    console.log('updated videos', videos);
+    this._saveVideos(videos);
   }
 
   addClip(video, clip) {
-    let index = this._videos.indexOf(video);
+    let videos = JSON.parse(this.localStorageService.get('videos'));
+    let index = videos.indexOf(video);
     if (index > -1) {
-      this._videos[index].clips.push(clip);
+      videos[index].clips.push(clip);
     }
+
+    this._saveVideos(videos);
   }
 
   getVideos() {
-    return this._videos;
+    console.log('videos', JSON.parse(this.localStorageService.get('videos')));
+    return JSON.parse(this.localStorageService.get('videos'));
   }
 
   getVideo(index) {
-    return this._videos[index];
+    let videos = JSON.parse(this.localStorageService.get('videos'));
+    return videos[index];
   }
 
-  removeAllClips(video) {
+  /*removeAllClips(video) {
     let index = this._videos.indexOf(video);
     if (index > -1) {
       this._videos[index].clips = [];
     }
-  }
+  }*/
 
   updateClip(video, index, clip) {
     let videoIndex = this._videos.indexOf(video);
@@ -67,6 +87,12 @@ class VideosService {
       }
     }
   }
+
+  _saveVideos(videos) {
+    this.localStorageService.set('videos', JSON.stringify(videos));
+  }
 }
+
+VideosService.$inject = ['localStorageService'];
 
 export default VideosService;

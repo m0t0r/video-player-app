@@ -2,10 +2,12 @@
 
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import localStorageProviderConfig from './config/local-storage-service-provider.config';
 
 const coreModule = angular
   .module('videoPlayerApp.core', [uiRouter])
-  .config(routesConfig);
+  .config(routesConfig)
+  .config(localStorageProviderConfig);
 
   function routesConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
