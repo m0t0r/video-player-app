@@ -6,22 +6,23 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label for="name">Name</label>
             <input type="text" name="name" id="name" ng-model="ctrl.clip.name" required>
-            <div ng-messages="addVideoForm.name.$error">
+            <div ng-messages="createClipForm.name.$error">
               <div ng-message="required">This field is required</div>
             </div>
           </md-input-container>
           <md-input-container>
-            <label for="startTime">Start Time (seconds):</label>
-            <input type="number" id="startTime" name="startTime" ng-model="ctrl.clip.start_time" required>
-            <div ng-messages="addVideoForm.startTime.$error">
+            <label for="startTime">Start Time (mm:ss)</label>
+            <input type="text" id="startTime" name="startTime" ng-model="ctrl.clip.start_time" ui-mask="99:99" ui-options="{addDefaultPlaceholder: false}" required>
+            <div ng-messages="createClipForm.startTime.$error">
               <div ng-message="required">This field is required</div>
             </div>
           </md-input-container>
           <md-input-container>
-            <label for="endTime">End Time (seconds):</label>
-            <input type="number" id="endTime" name="endTime" ng-model="ctrl.clip.end_time" required>
-            <div ng-messages="addVideoForm.startTime.$error">
+            <label for="endTime">End Time (mm:ss)</label>
+            <input type="text" id="endTime" name="endTime" ng-model="ctrl.clip.end_time" vp-validate-greater-than="ctrl.clip.start_time" ui-mask="99:99" ui-options="{addDefaultPlaceholder: false}" required>
+            <div ng-messages="createClipForm.endTime.$error">
               <div ng-message="required">This field is required</div>
+              <div ng-message="vpGreaterThan">End Time should be greater than Start Time</div>
             </div>
           </md-input-container>
         </div>

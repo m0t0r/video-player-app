@@ -48,16 +48,17 @@
       <div layout="row" ng-if="$ctrl.selectedVideoIndex !== 0">
         <md-input-container class="md-block" flex-gt-sm>
           <label for="startTime">Start Time</label>
-          <input type="number" name="startTime" id="startTime" ng-model="$ctrl.videos[$ctrl.selectedVideoIndex].start_time" required>
-          <div ng-messages="editVideoForm.start_time.$error">
+          <input type="text" id="startTime" name="startTime" ng-model="$ctrl.videos[$ctrl.selectedVideoIndex].start_time" ui-mask="99:99" ui-options="{addDefaultPlaceholder: false}" required>
+          <div ng-messages="editVideoForm.startTime.$error">
             <div ng-message="required">This field is required</div>
           </div>
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
           <label for="endTime">End Time</label>
-          <input type="number" name="endTime" id="endTime" ng-model="$ctrl.videos[$ctrl.selectedVideoIndex].end_time" required>
-          <div ng-messages="editVideoForm.end_time.$error">
+          <input type="text" id="endTime" name="endTime" ng-model="$ctrl.videos[$ctrl.selectedVideoIndex].end_time" vp-validate-greater-than="$ctrl.videos[$ctrl.selectedVideoIndex].start_time" ui-mask="99:99" ui-options="{addDefaultPlaceholder: false}" required>
+          <div ng-messages="editVideoForm.endTime.$error">
             <div ng-message="required">This field is required</div>
+            <div ng-message="vpGreaterThan">End Time should be greater than Start Time</div>
           </div>
         </md-input-container>
       </div>

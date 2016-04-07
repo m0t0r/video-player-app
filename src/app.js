@@ -7,6 +7,7 @@ import ngMessages from 'angular-messages';
 import ngMaterial from 'angular-material';
 import ngSanitize from 'angular-sanitize';
 import ngMdIcons from 'angular-material-icons';
+import uiMask from 'angular-ui-mask';
 import videogular from 'videogular';
 import videogularControls from 'videogular-controls';
 import videogularBuffering from 'videogular-buffering';
@@ -28,6 +29,7 @@ import AppComponent from './app.component';
       ngMaterial,
       ngSanitize,
       ngMdIcons,
+      uiMask,
       videogular,
       videogularControls,
       videogularBuffering,
