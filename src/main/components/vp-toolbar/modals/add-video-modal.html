@@ -12,9 +12,10 @@
           </md-input-container>
           <md-input-container class="md-block" flex-gt-sm>
             <label for="url">URL</label>
-            <input type="text" name="url" id="url" ng-model="ctrl.video.url" required>
+            <input type="text" name="url" id="url" ng-model="ctrl.video.url" ng-pattern="/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/" required>
             <div ng-messages="addVideoForm.url.$error">
               <div ng-message="required">This field is required</div>
+              <div ng-message="pattern">Please enter valid URL</div>
             </div>
           </md-input-container>
         </div>

@@ -10,13 +10,12 @@ class VpClipsListCtrl {
     this.$rootScope = $rootScope;
     this.$mdDialog = $mdDialog;
     this.VideosService = VideosService;
-    this.video = this.VideosService.getVideo(parseInt($stateParams.id, 10));
-    // select video by default
-    this.selectedVideo = this.video;
+    this.$stateParams = $stateParams;
+
+    this.loadVideo();
   }
 
   selectVideo(video) {
-    console.log('selected video', video);
     this.selectedVideo = video;
     this.onSelectedVideo({video});
   }
@@ -41,11 +40,25 @@ class VpClipsListCtrl {
       controllerAs: 'ctrl',
       clickOutsideToClose: true
     }).then((clip) => {
-        clip.created_at = new Date(),
-        clip.url = this.video.url + `#t=${clip.start_time},${clip.end_time}`;
-      this.$rootScope.$broadcast('vp-add-new-clip', clip);
-      this.VideosService.addClip(this.video, clip);
+        // FIXME: This logic should be in VideosService
+        if (this.video.clips.length > 0) {
+          clip.id = this.video.clips[this.video.clips.length - 1].id + 1;
+        } else {
+          clip.id = 1;
+        }
+      
+        clip.video_id = this.video.id;
+        clip.created_at = new Date();
+        clip.url = this.video.url + `#t=${this._getTimeInSeconds(clip.start_time)},${this._getTimeInSeconds(clip.end_time)}`;
+        this.onClipAdded({clip});
+        this.video.clips.push(clip);
     });
+  }
+
+  loadVideo() {
+    this.video = this.VideosService.getVideo(parseInt(this.$stateParams.id, 10));
+    // select video by default
+    this.selectedVideo = this.video;
   }
 
   removeAllClips($event) {
@@ -63,6 +76,13 @@ class VpClipsListCtrl {
       this.selectedVideoIndex = 0;
     });
   }
+
+  _getTimeInSeconds(time) {
+    let mins = time.substr(0,2);
+    let seconds = time.substr(2,3);
+    
+    return parseInt(mins) * 60 + parseInt(seconds);
+  }
 }
 
 VpClipsListCtrl.$inject = ['$rootScope', '$stateParams', 'VideosService', '$mdDialog'];
@@ -71,7 +91,8 @@ let VpClipsListComponent = {
   template,
   controller: VpClipsListCtrl,
   bindings: {
-    onSelectedVideo: '&'
+    onSelectedVideo: '&',
+    onClipAdded: '&'
   }
 };
 

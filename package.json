@@ -56,6 +56,7 @@
     "angular-sanitize": "1.5.0",
     "angular-ui-mask": "1.8.3",
     "angular-ui-router": "0.2.18",
+    "lodash": "4.9.0",
     "videogular": "1.4.1",
     "videogular-buffering": "1.4.1",
     "videogular-controls": "1.4.1",

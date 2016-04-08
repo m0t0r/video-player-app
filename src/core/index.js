@@ -33,10 +33,10 @@ const coreModule = angular
         url: '/:id/clips',
         views: {
           'content': {
-            template: '<vp-video-play selected-video="$ctrl.selectedVideo" on-video-update="$ctrl.onVideoUpdate(video)"></vp-video-play>'
+            template: '<vp-video-play selected-video="$ctrl.selectedVideo" on-video-updated="$ctrl.onVideoUpdated(video)"></vp-video-play>'
           },
           'side': {
-            template: '<vp-clips-list flex layout="row" layout-fill on-selected-video="$ctrl.onSelectedVideo(video)"></vp-clips-list>'
+            template: '<vp-clips-list flex layout="row" layout-fill on-selected-video="$ctrl.onSelectedVideo(video)" on-clip-added="$ctrl.onClipAdded(clip)"></vp-clips-list>'
           }
         }
       });

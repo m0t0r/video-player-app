@@ -1,5 +1,7 @@
 'use strict';
 
+import _ from 'lodash';
+
 class VideosService {
 
   constructor(localStorageService) {
@@ -47,15 +49,13 @@ class VideosService {
     let videos = JSON.parse(this.localStorageService.get('videos'));
     video.id = this.getNextId();
     videos.push(video);
+    
     this._saveVideos(videos);
   }
 
-  addClip(video, clip) {
+  addClip(index, clip) {
     let videos = JSON.parse(this.localStorageService.get('videos'));
-    let index = videos.indexOf(video);
-    if (index > -1) {
-      videos[index].clips.push(clip);
-    }
+    videos[index - 1].clips.push(clip);
 
     this._saveVideos(videos);
   }
@@ -69,23 +69,12 @@ class VideosService {
     return videos[index - 1];
   }
 
-  /*removeAllClips(video) {
-    let index = this._videos.indexOf(video);
-    if (index > -1) {
-      this._videos[index].clips = [];
-    }
-  }*/
+  updateClip(index, clip) {
+    let videos = JSON.parse(this.localStorageService.get('videos'));
+    let originalClipIndex = _.findIndex(videos[index - 1].clips, (originalClip) => originalClip.id === clip.id);
+    videos[index - 1].clips[originalClipIndex] = clip;
 
-  updateClip(clip) {
-
-    let videoIndex = this._videos.indexOf(video);
-    if (videoIndex > -1) {
-      for (let key in clip) {
-        if (this._videos[videoIndex].clips[index][key]) {
-          this._videos[videoIndex].clips[index][key] = clip[key];
-        }
-      }
-    }
+    this._saveVideos(videos);
   }
 
   _saveVideos(videos) {

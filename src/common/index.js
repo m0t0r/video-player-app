@@ -3,10 +3,10 @@
 import angular from 'angular';
 import VideosService from './services/videos.service';
 import VpValidateGreaterThan from './directives/vp-validate-greater-than.directive';
-import localStorageModule from 'angular-local-storage';
+import localStorage from 'angular-local-storage';
 
 const commonModule = angular
-  .module('videoPlayerApp.common', [localStorageModule])
+  .module('videoPlayerApp.common', [localStorage])
   .service('VideosService', VideosService)
   .directive('vpValidateGreaterThan', VpValidateGreaterThan);
 

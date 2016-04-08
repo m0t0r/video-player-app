@@ -33,8 +33,13 @@ class VpVideosPageCtrl {
     this.selectedVideo = selectedVideo;
   }
 
-  onVideoUpdate(updatedVideo) {
-    this.selectedVideo = updatedVideo;
+  onVideoUpdated(updatedClip) {
+    this.selectedVideo = updatedClip;
+    this.VideosService.updateClip(parseInt(this.$stateParams.id, 10), updatedClip);
+  }
+  
+  onClipAdded(clip) {
+    this.VideosService.addClip(parseInt(this.$stateParams.id, 10), clip);
   }
 }
 
