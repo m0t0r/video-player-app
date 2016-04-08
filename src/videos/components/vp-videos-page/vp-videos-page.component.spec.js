@@ -36,6 +36,5 @@ describe('Component: vp-videos-page', () => {
     let controller = component.controller('vpVideosPage');
 
     expect(controller.selectedVideo).toBeDefined();
-    expect(controller.selectedVideoIndex).toBe(0);
   });
 });

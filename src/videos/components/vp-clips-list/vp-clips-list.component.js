@@ -40,15 +40,6 @@ class VpClipsListCtrl {
       controllerAs: 'ctrl',
       clickOutsideToClose: true
     }).then((clip) => {
-        // FIXME: This logic should be in VideosService
-        if (this.video.clips.length > 0) {
-          clip.id = this.video.clips[this.video.clips.length - 1].id + 1;
-        } else {
-          clip.id = 1;
-        }
-      
-        clip.video_id = this.video.id;
-        clip.created_at = new Date();
         clip.url = this.video.url + `#t=${this._getTimeInSeconds(clip.start_time)},${this._getTimeInSeconds(clip.end_time)}`;
         this.onClipAdded({clip});
         this.video.clips.push(clip);

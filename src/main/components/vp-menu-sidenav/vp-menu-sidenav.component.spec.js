@@ -37,7 +37,7 @@ describe('Component: vp-menu-sidenav', () => {
     let spy = spyOn($state, 'go');
 
     controller.goTo('test.state');
-    expect(spy).toHaveBeenCalledWith('test.state');
+    expect(spy).toHaveBeenCalled();
   });
 
   it('should be closed by navigation to a view state', () => {

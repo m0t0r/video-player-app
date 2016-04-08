@@ -42,7 +42,7 @@ class VideosService {
 
   getNextId() {
     let videos = JSON.parse(this.localStorageService.get('videos'));
-    return videos[videos.length - 1].id + 1;
+    return videos.length ? videos[videos.length - 1].id + 1 : -1;
   }
 
   addVideo(video) {
@@ -55,8 +55,17 @@ class VideosService {
 
   addClip(index, clip) {
     let videos = JSON.parse(this.localStorageService.get('videos'));
-    videos[index - 1].clips.push(clip);
 
+    if (videos[index - 1].clips.length > 0) {
+      clip.id = videos[index - 1].clips[videos[index - 1].clips.length - 1].id + 1;
+    } else {
+      clip.id = 1;
+    }
+
+    clip.video_id = videos[index - 1].id;
+    clip.created_at = new Date();
+    
+    videos[index - 1].clips.push(clip);
     this._saveVideos(videos);
   }
 
