@@ -11,11 +11,11 @@
       </vg-media>
       <vg-controls>
         <vg-play-pause-button></vg-play-pause-button>
-        <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+        <vg-time-display ng-hide="$ctrl.selectedVideo.video_id">{{ currentTime | date:'mm:ss' }}</vg-time-display>
         <vg-scrub-bar>
           <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
         </vg-scrub-bar>
-        <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+        <vg-time-display ng-hide="$ctrl.selectedVideo.video_id">{{ timeLeft | date:'mm:ss' }}</vg-time-display>
         <vg-volume>
           <vg-mute-button></vg-mute-button>
           <vg-volume-bar></vg-volume-bar>
