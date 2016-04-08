@@ -11,10 +11,14 @@ class VpClipsListCtrl {
     this.$mdDialog = $mdDialog;
     this.VideosService = VideosService;
     this.video = this.VideosService.getVideo(parseInt($stateParams.id, 10));
+    // select video by default
+    this.selectedVideo = this.video;
   }
 
-  selectVideo(index) {
-    this.selectedVideoIndex = index;
+  selectVideo(video) {
+    console.log('selected video', video);
+    this.selectedVideo = video;
+    this.onSelectedVideo({video});
   }
 
   createClip($event) {
@@ -67,7 +71,7 @@ let VpClipsListComponent = {
   template,
   controller: VpClipsListCtrl,
   bindings: {
-    selectedVideoIndex: '='
+    onSelectedVideo: '&'
   }
 };
 

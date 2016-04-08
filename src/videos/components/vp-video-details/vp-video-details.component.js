@@ -13,7 +13,7 @@ let VpVideoDetailsComponent = {
   template,
   controller: VpVideoDetailsCtrl,
   bindings: {
-    selectedVideo: '='
+    selectedVideo: '<'
   }
 };
 

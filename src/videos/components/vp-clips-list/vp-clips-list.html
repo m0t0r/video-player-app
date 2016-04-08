@@ -11,8 +11,8 @@
   <md-content flex layout="column">
     <md-list class="vp-clips-list">
       <md-list-item class="md-2-line"
-                    ng-click="$ctrl.selectVideo(0)"
-                    ng-class="{'selected': $ctrl.selectedVideoIndex === 0}">
+                    ng-click="$ctrl.selectVideo($ctrl.video)"
+                    ng-class="{'selected': $ctrl.video === $ctrl.selectedVideo}">
         <ng-md-icon icon="videocam" size="40" class="vp-clips-list__icon vp-clips-list__icon-video"></ng-md-icon>
         <div class="md-list-item-text" layout="column">
           <h3>{{ $ctrl.video.name }}</h3>
@@ -21,9 +21,9 @@
       </md-list-item>
 
       <md-list-item class="md-2-line"
-                    ng-repeat="(key, clip) in $ctrl.video.clips track by $index"
-                    ng-click="$ctrl.selectVideo($index + 1)"
-                    ng-class="{'selected': $ctrl.selectedVideoIndex === $index + 1}">
+                    ng-repeat="clip in $ctrl.video.clips track by $index"
+                    ng-click="$ctrl.selectVideo(clip)"
+                    ng-class="{'selected': clip === $ctrl.selectedVideo}">
         <ng-md-icon icon="video_collection" size="40" class="vp-clips-list__icon vp-clips-list__icon-clip"></ng-md-icon>
         <div class="md-list-item-text" layout="column">
           <h3>{{ clip.name }}</h3>

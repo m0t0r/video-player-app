@@ -4,7 +4,6 @@ function VpValidateGreaterThanLinkFn (scope, el, attrs, ngModelCtrl) {
   function validateGreaterThan(value) {
     var valid = (parseInt(value) > parseInt(scope.vpValidateGreaterThan));
     ngModelCtrl.$setValidity('vpGreaterThan', valid);
-    console.log('valid', valid);
     return valid ? value : undefined;
   }
 

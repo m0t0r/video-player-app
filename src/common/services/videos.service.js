@@ -6,7 +6,7 @@ class VideosService {
     this.localStorageService = localStorageService;
 
     // load mock videos
-    if (JSON.parse(this.localStorageService.get('videos')) === void 0) {
+    if (JSON.parse(this.localStorageService.get('videos')) === null) {
       this.loadMockVideos();
     }
   }
@@ -14,7 +14,7 @@ class VideosService {
   loadMockVideos() {
     let mockVideoData = [
       {
-        id: 0,
+        id: 1,
         name: 'Test Video 1',
         url: 'http://static.videogular.com/assets/videos/videogular.mp4',
         description: 'A sample video for quick test',
@@ -22,7 +22,8 @@ class VideosService {
         protected: true,
         clips: [
           {
-            id: 0,
+            id: 1,
+            video_id: 1,
             name: 'Test Clip 1',
             description: 'A Test Clip 1',
             url: 'http://static.videogular.com/assets/videos/videogular.mp4#t=5,15',
@@ -46,7 +47,6 @@ class VideosService {
     let videos = JSON.parse(this.localStorageService.get('videos'));
     video.id = this.getNextId();
     videos.push(video);
-    console.log('updated videos', videos);
     this._saveVideos(videos);
   }
 
@@ -61,13 +61,12 @@ class VideosService {
   }
 
   getVideos() {
-    console.log('videos', JSON.parse(this.localStorageService.get('videos')));
     return JSON.parse(this.localStorageService.get('videos'));
   }
 
   getVideo(index) {
     let videos = JSON.parse(this.localStorageService.get('videos'));
-    return videos[index];
+    return videos[index - 1];
   }
 
   /*removeAllClips(video) {
@@ -77,7 +76,8 @@ class VideosService {
     }
   }*/
 
-  updateClip(video, index, clip) {
+  updateClip(clip) {
+
     let videoIndex = this._videos.indexOf(video);
     if (videoIndex > -1) {
       for (let key in clip) {

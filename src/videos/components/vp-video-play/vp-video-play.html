@@ -1,7 +1,7 @@
 <md-card class="vp-video-play">
-  <md-card-actions layout="row" layout-align="end start" ng-if="$ctrl.selectedVideoIndex !== 0" ng-click="$ctrl.isEditMode = !$ctrl.isEditMode">
+  <md-card-actions layout="row" layout-align="end start" ng-if="$ctrl.selectedVideo.video_id" ng-click="$ctrl.isEditMode = !$ctrl.isEditMode">
     <md-button class="vp-video-play__edit-btn">
-      <ng-md-icon icon="edit"></ng-md-icon>
+      edit
     </md-button>
   </md-card-actions>
   <md-card-content>
@@ -32,14 +32,14 @@
       <div layout="row">
         <md-input-container class="md-block" flex-gt-sm>
           <label for="name">Name</label>
-          <input type="text" name="name" id="name" ng-model="$ctrl.videos[$ctrl.selectedVideoIndex].name" required>
+          <input type="text" name="name" id="name" ng-model="$ctrl.selectedVideo.name" required>
           <div ng-messages="editVideoForm.name.$error">
             <div ng-message="required">This field is required</div>
           </div>
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
           <label for="description">Description</label>
-          <input type="text" name="description" id="description" ng-model="$ctrl.videos[$ctrl.selectedVideoIndex].description" required>
+          <input type="text" name="description" id="description" ng-model="$ctrl.selectedVideo.description" required>
           <div ng-messages="editVideoForm.description.$error">
             <div ng-message="required">This field is required</div>
           </div>
@@ -48,14 +48,14 @@
       <div layout="row" ng-if="$ctrl.selectedVideoIndex !== 0">
         <md-input-container class="md-block" flex-gt-sm>
           <label for="startTime">Start Time</label>
-          <input type="text" id="startTime" name="startTime" ng-model="$ctrl.videos[$ctrl.selectedVideoIndex].start_time" ui-mask="99:99" ui-options="{addDefaultPlaceholder: false}" required>
+          <input type="text" id="startTime" name="startTime" ng-model="$ctrl.selectedVideo.start_time" ui-mask="99:99" ui-options="{addDefaultPlaceholder: false}" required>
           <div ng-messages="editVideoForm.startTime.$error">
             <div ng-message="required">This field is required</div>
           </div>
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
           <label for="endTime">End Time</label>
-          <input type="text" id="endTime" name="endTime" ng-model="$ctrl.videos[$ctrl.selectedVideoIndex].end_time" vp-validate-greater-than="$ctrl.videos[$ctrl.selectedVideoIndex].start_time" ui-mask="99:99" ui-options="{addDefaultPlaceholder: false}" required>
+          <input type="text" id="endTime" name="endTime" ng-model="$ctrl.selectedVideo.end_time" vp-validate-greater-than="$ctrl.selectedVideo.start_time" ui-mask="99:99" ui-options="{addDefaultPlaceholder: false}" required>
           <div ng-messages="editVideoForm.endTime.$error">
             <div ng-message="required">This field is required</div>
             <div ng-message="vpGreaterThan">End Time should be greater than Start Time</div>

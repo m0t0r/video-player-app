@@ -14,7 +14,7 @@ class VpMenuSidenavCtrl {
   }
 
   goTo(state) {
-    this.$state.go(state);
+    this.$state.go(state, {}, {reload: true});
     this.openState = false;
   }
 }
