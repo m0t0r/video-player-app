@@ -77,6 +77,17 @@ class VideosService {
     this._saveVideos(videos);
   }
 
+  removeClips(index, clipsIds) {
+    var videos = JSON.parse(this.localStorageService.get('videos'));
+
+    _.each(clipsIds, (clipId) => {
+      var idx = _.findIndex(videos[index - 1].clips, (clip) => clip.id === clipId);
+      videos[index - 1].clips.splice(idx, 1);
+    });
+
+    this._saveVideos(videos);
+  }
+
   _saveVideos(videos) {
     this.localStorageService.set('videos', JSON.stringify(videos));
   }

@@ -6,11 +6,11 @@ import './vp-clips-list.css';
 
 class VpClipsListCtrl {
 
-  constructor($rootScope, $stateParams, VideosService, $mdDialog) {
-    this.$rootScope = $rootScope;
+  constructor($stateParams, VideosService, $mdDialog) {
     this.$mdDialog = $mdDialog;
     this.VideosService = VideosService;
     this.$stateParams = $stateParams;
+    this.selectedClipsIdsForDeletion = [];
 
     this.loadVideo();
   }
@@ -61,19 +61,29 @@ class VpClipsListCtrl {
     this.selectedVideo = this.video;
   }
 
+  selectClip(clip) {
+    if (clip.selected) {
+      this.selectedClipsIdsForDeletion.push(clip.id);
+    } else {
+      var idx = this.selectedClipsIdsForDeletion.indexOf(clip.id);
+      this.selectedClipsIdsForDeletion.splice(idx, 1);
+    }
+  }
+  
+
   removeAllClips($event) {
     let confirnDialog = this.$mdDialog
       .confirm()
-      .title('Remove all clips for this video ?')
-      .textContent('All clips will be permanently removed.')
+      .title('Remove selected clips for this video ?')
+      .textContent('All selected clips will be permanently removed.')
       .targetEvent($event)
       .ok('Remove')
       .cancel('No');
 
     this.$mdDialog.show(confirnDialog).then(() => {
-      this.VideosService.removeAllClips(this.video);
-      this.$rootScope.$broadcast('vp-remove-all-clips');
-      this.selectedVideoIndex = 0;
+      this.VideosService.removeClips(parseInt(this.$stateParams.id, 10), this.selectedClipsIdsForDeletion);
+      this.loadVideo();
+      this.selectedClipsIdsForDeletion.length = 0;
     });
   }
 
@@ -85,7 +95,7 @@ class VpClipsListCtrl {
   }
 }
 
-VpClipsListCtrl.$inject = ['$rootScope', '$stateParams', 'VideosService', '$mdDialog'];
+VpClipsListCtrl.$inject = ['$stateParams', 'VideosService', '$mdDialog'];
 
 let VpClipsListComponent = {
   template,
